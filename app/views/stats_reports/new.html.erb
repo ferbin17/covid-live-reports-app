@@ -1,0 +1,60 @@
+<div id="add-or-update">
+  <h4>Add Data</h4>
+  <div id="stats_report-form">
+    <table id="stats_report-table">
+    <%= form_for @stats_report do |f| %>
+      <% if @stats_report.errors.any? %>
+        <div class="alert alert-danger">
+          <ul>
+            <% @stats_report.errors.each do |key, error| %>
+              <li><%= error %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <tr>
+        <td class="first-field"><%= f.label :date %> </td><td><%= f.date_select :date %></td>
+        <td class="second-field"><%= f.label :district_id %> </td><td><%= f.select :district_id, @districts.map{|x| ["#{I18n.t("district.#{x.name}")}", x.id]} %></td>
+      </tr>
+      <tr>
+        <td class="first-field"><%= f.label :total_no_patients %></td><td><%= f.text_field :total_no_patients, disabled: true, class: "textfield-number" %></td>
+        <td class="second-field"><%= f.label :no_of_patients_under_observation %></td><td><%= f.text_field :no_of_patients_under_observation, class: "textfield-number" %></td>
+      </tr>
+      <tr>
+        <td class="first-field"><%= f.label :no_of_patients_obs_at_home %></td><td><%= f.text_field :no_of_patients_obs_at_home, class: "textfield-number" %></td>
+        <td class="second-field"><%= f.label :no_of_patients_obs_at_hospital %></td><td><%= f.text_field :no_of_patients_obs_at_hospital, class: "textfield-number" %></td>
+      </tr>
+      <tr>
+        <td class="first-field"><%= f.label :no_of_patients_admitted_today %></td><td><%= f.text_field :no_of_patients_admitted_today, class: "textfield-number" %></td>
+      </tr>
+      <tr>
+        <td colspan="4" align="center"><%= f.submit "Add Data" %></td>
+      </tr>
+    <% end %>
+    </table>
+  </div>
+</div>
+
+<div id="previous-updation">
+</div><div class="label-text-field"></div><div class="label-text-field"></div>
+
+<script>
+ $('.textfield-number').keyup(function(){
+   var reg = /^\d+$/;
+   if(!reg.test($(this).val())){
+     $(this).val($(this).val().replace(/\D/g,''));
+   }
+   var sum = 0
+   $('.textfield-number').each(function(){
+     var no = 0;
+     if(!($(this).attr("id") == "stats_report_total_no_patients")){
+       no = $(this).val().replace(/\D/g,'');
+     }
+     if(no != ""){
+       console.log(parseInt(no))
+       sum += parseInt(no);
+     }
+   });
+   $('#stats_report_total_no_patients').val(sum);
+ })
+</script>

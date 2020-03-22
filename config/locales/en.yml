@@ -1,0 +1,75 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# The following keys must be escaped otherwise they will not be retrieved by
+# the default I18n backend:
+#
+# true, false, on, off, yes, no
+#
+# Instead, surround them with single quotes.
+#
+# en:
+#   'true': 'foo'
+#
+# To learn more, please read the Rails Internationalization guide
+# available at https://guides.rubyonrails.org/i18n.html.
+
+en:
+  activerecord:
+    attributes:
+      stats_report:
+        total_no_patients: "Total no. of patients"
+        
+    errors:
+      models:
+        stats_report:
+          attributes:
+            base:
+              enter_atleast_one_data: "Enter data in atleast column"
+  hello: "Hello world"
+  active_admin: 
+    total_no_patients: "Total no. of patients"
+    no_of_patients_obs: "Total no. of patients under observation"
+    no_of_patients_obs_at_hospital: "Total no. of patients under observation at hospitals"
+    no_of_patients_obs_at_home: "Total no. of patients under observation at homes"
+    no_of_recovered_patient: "Total no. of patients recovered"
+    no_of_death: "Total no. of death"
+  total_no_of_people_in_observation: "Total no of total no of people in observation"
+  total_no_of_people_in_observation_at_home: "Total no of people in observation at home"
+  total_no_of_people_in_observation_at_hospital: "Total no of people in observation at hospital"
+  total_no_of_people_admitted_today: "Total no of people admitted today"
+  
+  state: "State"
+  state:
+    kerala: "Kerala"
+  district_text: "District"
+  district:
+    alappuzha: "Alappuzha"
+    ernakulam: "Ernakulam"
+    idukki: "Idukki"
+    kannur: "Kannur"
+    kasaragod: "Kasaragod"
+    kollam: "Kollam"
+    kottayam: "Kottayam"
+    kozhikode: "Kozhikode"
+    malappuram: "Malappuram"
+    palakkad: "Palakkad"
+    pathanamthitta: "Pathanamthitta"
+    thiruvananthapuram: "Thiruvananthapuram"
+    thrissur: "Thrissur"
+    wayanad: "Wayanad"

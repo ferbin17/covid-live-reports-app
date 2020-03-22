@@ -1,0 +1,52 @@
+<div class="state_stats_div">
+  <% @stats_counts.each do |stats_count| %>
+    <div class= "state_stats_ind" id= "total-count">
+      <div class= "count_header", id= "totalsss-count" >
+        <span><%= I18n.t("active_admin.total_no_patients") %>
+      </div>
+      <div class= "count_div", id= "totals-count" >
+        <span><%= stats_count.total_count_of_patients %> 
+      </div>
+    </div>
+    <div class= "state_stats_ind" id="total-observation-count">
+      <div class= "count_header" id="totalsss-count" >
+        <span><%= I18n.t("active_admin.no_of_patients_obs") %></span>
+      </div>
+      <div class= "count_div" id="totalss-count" >
+        <span><%= stats_count.count_of_patients_under_obs %></span>
+      </div>
+    </div>
+    <div class= "state_stats_ind" id="total-patient-hospital-count" >
+      <div class= "count_header" id="totalsss-count" >
+        <span><%= I18n.t("active_admin.no_of_patients_obs_at_hospital") %></span>
+      </div>
+      <div class= "count_div" id="totalsss-count" >
+        <span><%= stats_count.count_of_patients_at_homes %></span>
+      </div>
+    </div>
+    <div class= "state_stats_ind" id="total-patient-home-count" >
+      <div class= "count_header" id="totalsss-count" >
+        <span><%=  I18n.t("active_admin.no_of_patients_obs_at_home") %></span>
+      </div>
+      <div class= "count_div" id="totalssss-count" >
+        <span><%= stats_count.count_of_patients_at_hospitals %></span>
+      </div>
+    </div>
+    <div class= "state_stats_ind" id="total-recovered-count" >
+      <div class= "count_header" id="totalsss-count" >
+        <span><%= I18n.t("active_admin.no_of_recovered_patient") %></span>
+      </div>
+      <div class= "count_div" id="totalsssss-count" >
+        <span><%= 0 %></span>
+      </div>
+    </div>
+    <div class= "state_stats_ind" id="total-death-count" >
+      <div class= "count_header" id="totalsss-count" >
+        <span><%= I18n.t("active_admin.no_of_death") %></span>
+      </div>
+      <div class= "count_div" id="totalsssssss-count" >
+        <span><%= 0 %></span>
+        </div>
+    </div>
+  <% end %>
+</div>

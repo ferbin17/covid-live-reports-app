@@ -1,0 +1,54 @@
+<div id="heading-div">
+  <h4>Live Report</h4>
+</div>
+
+<!-- #add filters if needed -->
+<div id="filters">
+</div>
+
+<!-- #table that shows the latest data -->
+<div id="district-wise-report">
+  <table width="100%">
+    <tr class="header">
+      <td><%= I18n.t('district_text') %></td>
+      <td><%= I18n.t('total_no_of_people_in_observation') %></td>
+      <td><%= I18n.t('total_no_of_people_in_observation_at_home') %></td>
+      <td><%= I18n.t('total_no_of_people_in_observation_at_hospital') %></td>
+      <td><%= I18n.t('total_no_of_people_admitted_today') %></td>
+    </tr>
+    <% @stats_counts.each do |stats_count| %>
+      <tr>
+        <td><%= I18n.t("district.#{stats_count.district.name}") %></td>
+        <td><%= stats_count.total_count_of_patients %></td>
+        <td><%= stats_count.count_of_patients_at_homes %></td>
+        <td><%= stats_count.count_of_patients_at_hospitals %></td>
+        <td><%= stats_count.admitted_today %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+
+</div>
+<style>
+#heading-div{
+  margin: 15px auto;
+  text-align: center;
+}
+
+#heading-div h4{
+  font-weight: bolder !important;
+}
+
+table{
+  border: 1px solid black
+}
+
+table td{
+  border: 1px solid black;
+  padding: 5px 10px;
+}
+
+table tr.header{
+  text-align: center;
+}
+</style>
