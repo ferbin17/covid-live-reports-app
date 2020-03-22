@@ -5,7 +5,7 @@
         <span><%= I18n.t("active_admin.total_no_patients") %>
       </div>
       <div class= "count_div", id= "totals-count" >
-        <span><%= stats_count.total_count_of_patients %> 
+        <span><%= stats_count.total_count_of_patients  || 0%> 
       </div>
     </div>
     <div class= "state_stats_ind" id="total-observation-count">
@@ -13,7 +13,7 @@
         <span><%= I18n.t("active_admin.no_of_patients_obs") %></span>
       </div>
       <div class= "count_div" id="totalss-count" >
-        <span><%= stats_count.count_of_patients_under_obs %></span>
+        <span><%= stats_count.count_of_patients_under_obs || 0 %></span>
       </div>
     </div>
     <div class= "state_stats_ind" id="total-patient-hospital-count" >
@@ -21,7 +21,7 @@
         <span><%= I18n.t("active_admin.no_of_patients_obs_at_hospital") %></span>
       </div>
       <div class= "count_div" id="totalsss-count" >
-        <span><%= stats_count.count_of_patients_at_homes %></span>
+        <span><%= stats_count.count_of_patients_at_homes || 0 %></span>
       </div>
     </div>
     <div class= "state_stats_ind" id="total-patient-home-count" >
@@ -29,7 +29,7 @@
         <span><%=  I18n.t("active_admin.no_of_patients_obs_at_home") %></span>
       </div>
       <div class= "count_div" id="totalssss-count" >
-        <span><%= stats_count.count_of_patients_at_hospitals %></span>
+        <span><%= stats_count.count_of_patients_at_hospitals  || 0%></span>
       </div>
     </div>
     <div class= "state_stats_ind" id="total-recovered-count" >
