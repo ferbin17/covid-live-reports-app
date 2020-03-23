@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_22_105445) do
+ActiveRecord::Schema.define(version: 2020_03_23_144457) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,7 +49,6 @@ ActiveRecord::Schema.define(version: 2020_03_22_105445) do
 
   create_table "stats_reports", force: :cascade do |t|
     t.integer "district_id", null: false
-    t.date "datae", null: false
     t.integer "total_no_patients"
     t.integer "no_of_patients_under_observation"
     t.integer "no_of_patients_obs_at_home"
@@ -57,6 +56,9 @@ ActiveRecord::Schema.define(version: 2020_03_22_105445) do
     t.integer "no_of_patients_admitted_today"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.date "date", null: false
+    t.integer "no_of_patients_recovered_today", default: 0
+    t.integer "no_of_patients_died_today", default: 0
   end
 
 end

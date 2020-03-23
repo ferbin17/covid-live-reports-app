@@ -33,7 +33,14 @@ en:
   activerecord:
     attributes:
       stats_report:
-        total_no_patients: "Total no. of patients"
+        total_no_patients: "Total no of patients today"
+        district: "Distrcit"
+        no_of_patients_under_observation: "Total no of patients under observation today"
+        no_of_patients_obs_at_home: "Total no of patients under observation at home today"
+        no_of_patients_obs_at_hospital: "Total no of patients under observation at hospital today"
+        no_of_patients_admitted_today: "Total no of patients admitted today"
+        no_of_patients_recovered_today: "Total no of patients recovered today"
+        no_of_patients_died_today: "Total no of patients died today"
         
     errors:
       models:
@@ -53,6 +60,8 @@ en:
   total_no_of_people_in_observation_at_home: "Total no of people in observation at home"
   total_no_of_people_in_observation_at_hospital: "Total no of people in observation at hospital"
   total_no_of_people_admitted_today: "Total no of people admitted today"
+  total_no_of_people_recovered_today: "Total no of people recovered today"
+  total_no_of_people_died_today: "Total no of people died today"
   
   state: "State"
   state:

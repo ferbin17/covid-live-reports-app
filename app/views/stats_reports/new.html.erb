@@ -26,6 +26,10 @@
         </tr>
         <tr>
           <td class="first-field"><%= f.label :no_of_patients_admitted_today %></td><td><%= f.text_field :no_of_patients_admitted_today, class: "textfield-number" %></td>
+          <td class="second-field"><%= f.label :no_of_patients_recovered_today %></td><td><%= f.text_field :no_of_patients_recovered_today, class: "textfield-number" %></td>
+        </tr>
+        <tr>
+          <td class="first-field"><%= f.label :no_of_patients_died_today %></td><td><%= f.text_field :no_of_patients_died_today, class: "textfield-number" %></td>
         </tr>
         <tr>
           <td colspan="4" align="center"><%= f.submit "Add Data" %></td>

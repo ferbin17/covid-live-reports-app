@@ -48,8 +48,9 @@
 }
 
 .flash-msg {
+  margin-top: 20px;
   background-color: #fff1ab;
-  padding: 5px;
+  padding: 2px;
   text-align: center;
   font-size: 13px;
   font-weight: 600;
