@@ -1,0 +1,93 @@
+<div id="data-center">
+  <div id="head-section"> 
+    <h4>Data Center</h4>
+    <div id="action-buttons">
+      <button id="create_button" onclick="on()">Add Data</button>
+    </div>
+  </div>
+  
+  <div id="previous-updation">
+    <% if @previous_entries.present? %>
+      <table id="entries-table" width="100%">
+        <tr class="header">
+          <td><%= I18n.t('created_at') %></td>
+          <td><%= I18n.t('date_text') %></td>
+          <td><%= I18n.t('district_text') %></td>
+          <td><%= I18n.t('total_no_of_patients') %></td>
+          <td><%= I18n.t('total_no_of_patients_in_observation') %></td>
+          <td><%= I18n.t('total_no_of_patients_in_observation_at_home') %></td>
+          <td><%= I18n.t('total_no_of_patients_in_observation_at_hospital') %></td>
+          <td><%= I18n.t('total_no_of_patients_admitted_today') %></td>
+          <td><%= I18n.t('total_no_of_patients_recovered_today') %></td>
+          <td><%= I18n.t('total_no_of_patients_died_today') %></td>
+          <td><%= I18n.t('actions') %></td>
+        </tr>
+        <% @previous_entries.each do |entry| %>
+        <tr>
+          <td><%= entry.created_at.strftime("%d-%m-%Y %I:%M %p") %></td>
+          <td><%= entry.date.strftime("%d-%m-%Y") %></td>
+          <td><%= I18n.t("district.#{entry.district.name}") %></td>
+          <td><%= entry.total_no_patients %></td>
+          <td><%= entry.no_of_patients_under_observation %></td>
+          <td><%= entry.no_of_patients_obs_at_home %></td>
+          <td><%= entry.no_of_patients_obs_at_hospital %></td>
+          <td><%= entry.no_of_patients_admitted_today %></td>
+          <td><%= entry.no_of_patients_recovered_today %></td>
+          <td><%= entry.no_of_patients_died_today %></td>
+          <td align="center"><div entry_id="<%= entry.id %>" class="update"><span class="material-icons">update</span></div><div entry_id="<%= entry.id %>" class="destroy"><span class="material-icons">delete</span></div></td>
+        </tr>
+        <% end %>
+      </table>
+      <div class="digg_pagination">
+        <%= will_paginate @previous_entries, :container => false %>
+      </div>
+    <% end %>
+  </div>
+  
+  <div id="overlay">
+    <div id="text">
+      <div id="form-header">
+        <h4></h4>
+      </div>
+      <div id="stats_report-form">
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+ function on(){
+   document.getElementById("overlay").style.display = "block";
+ }
+
+ function off(){
+   document.getElementById("overlay").style.display = "none";
+ }  
+ $("#create_button").click(function() {
+   $.ajax({
+     type: 'GET',
+     url: '/stats_reports/new',
+   });
+ });
+
+ $(".update").click(function() {
+   var id = $(this).attr("entry_id");
+   var url = '/stats_reports/' + id + '/edit';
+   $.ajax({
+     type: 'GET',
+     url: url,
+   });
+ });
+ 
+ $(".destroy").click(function() {
+   var result = confirm("Are you sure about deleting?");
+   if(result){
+     var id = $(this).attr("entry_id");
+     var url = '/stats_reports/' + id;
+     $.ajax({
+       type: 'DELETE',
+       url: url
+     });
+   }
+  });
+</script>

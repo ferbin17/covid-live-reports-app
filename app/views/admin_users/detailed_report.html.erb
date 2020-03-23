@@ -1,5 +1,36 @@
+<% if @last_entry.present? %>
+  <div id="last-entry">
+    <div id="last-entry-heading">
+      <h5>Last Data Entry</h5>
+    </div>
+    <div id="last-entry-report">
+      <table width="100%">
+        <tr class="header">
+          <td><%= I18n.t('district_text') %></td>
+          <td><%= I18n.t('total_no_of_patients') %></td>
+          <td><%= I18n.t('total_no_of_patients_in_observation') %></td>
+          <td><%= I18n.t('total_no_of_patients_in_observation_at_home') %></td>
+          <td><%= I18n.t('total_no_of_patients_in_observation_at_hospital') %></td>
+          <td><%= I18n.t('total_no_of_patients_admitted_today') %></td>
+          <td><%= I18n.t('total_no_of_patients_recovered_today') %></td>
+          <td><%= I18n.t('total_no_of_patients_died_today') %></td>
+        </tr>
+        <tr>
+          <td><%= I18n.t("district.#{@last_entry.district.name}") %></td>
+          <td><%= @last_entry.total_no_patients %></td>
+          <td><%= @last_entry.no_of_patients_under_observation %></td>
+          <td><%= @last_entry.no_of_patients_obs_at_home %></td>
+          <td><%= @last_entry.no_of_patients_obs_at_hospital %></td>
+          <td><%= @last_entry.no_of_patients_admitted_today %></td>
+          <td><%= @last_entry.no_of_patients_recovered_today %></td>
+          <td><%= @last_entry.no_of_patients_died_today %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+<% end %>
 <div id="heading-div">
-  <h4>Live Report</h4>
+  <h4>Live Overall Stats (<%= Date.today.strftime("%d-%m-%Y") %>)</h4>
 </div>
 
 <!-- #add filters if needed -->
@@ -11,17 +42,19 @@
   <table width="100%">
     <tr class="header">
       <td><%= I18n.t('district_text') %></td>
-      <td><%= I18n.t('total_no_of_people_in_observation') %></td>
-      <td><%= I18n.t('total_no_of_people_in_observation_at_home') %></td>
-      <td><%= I18n.t('total_no_of_people_in_observation_at_hospital') %></td>
-      <td><%= I18n.t('total_no_of_people_admitted_today') %></td>
-      <td><%= I18n.t('total_no_of_people_recovered_today') %></td>
-      <td><%= I18n.t('total_no_of_people_died_today') %></td>
+      <td><%= I18n.t('total_no_of_patients') %></td>
+      <td><%= I18n.t('total_no_of_patients_in_observation') %></td>
+      <td><%= I18n.t('total_no_of_patients_in_observation_at_home') %></td>
+      <td><%= I18n.t('total_no_of_patients_in_observation_at_hospital') %></td>
+      <td><%= I18n.t('total_no_of_patients_admitted_today') %></td>
+      <td><%= I18n.t('total_no_of_patients_recovered_today') %></td>
+      <td><%= I18n.t('total_no_of_patients_died_today') %></td>
     </tr>
     <% @stats_counts.each do |stats_count| %>
       <tr>
         <td><%= I18n.t("district.#{stats_count.district.name}") %></td>
         <td><%= stats_count.total_count_of_patients %></td>
+        <td><%= stats_count.count_of_patients_under_obs %></td>
         <td><%= stats_count.count_of_patients_at_homes %></td>
         <td><%= stats_count.count_of_patients_at_hospitals %></td>
         <td><%= stats_count.admitted_today %></td>
@@ -31,9 +64,12 @@
     <% end %>
   </table>
 </div>
-
-</div>
 <style>
+  
+#last-entry-heading{
+  margin: 15px auto;
+  text-align: center;
+}
 #heading-div{
   margin: 15px auto;
   text-align: center;
