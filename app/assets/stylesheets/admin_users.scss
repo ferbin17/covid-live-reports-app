@@ -17,8 +17,8 @@
   border: 1px solid black;
   border-radius: 5px;
   float: left;
-  width: 14%;
-  height: 180px;
+  width: 12%;
+  height:230px;
   text-align: center;
   margin: 0px 10px;
 }
@@ -30,7 +30,7 @@
 }
 
 #total-count{
-  margin-left: 25px;
+  margin-left: 15px;
 }
 
 .count_header{
@@ -85,13 +85,22 @@ table#stats_report-table td.second-field{
    padding: 0 15px;
 }
 
+#head-section{
+ display: flex;
+ margin: 15px auto;
+}
+
 #head-section h4{
-  width: 90%;
+  width: 74%;
   float: left;
 }
 
-#action-buttons{
+.action-buttons{
   float: left;
+}
+
+#create_button{
+  width: 93px;
 }
 
 table#entries-table{

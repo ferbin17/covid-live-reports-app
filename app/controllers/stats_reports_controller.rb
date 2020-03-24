@@ -49,6 +49,9 @@ class StatsReportsController < ApplicationController
     end
   end
   
+  def view_removed_data
+  end
+  
   protected
     def construct_params
       constructed_params = params.require(:stats_report).permit(:date, :district_id, :total_no_patients, :no_of_patients_under_observation, :no_of_patients_obs_at_home, :no_of_patients_obs_at_hospital, :no_of_patients_admitted_today, :no_of_patients_recovered_today, :no_of_patients_died_today)

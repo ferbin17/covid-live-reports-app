@@ -1,7 +1,10 @@
 <div id="data-center">
   <div id="head-section"> 
+    <div class="action-buttons">
+      <button id="deleted_records" onclick="on()">View Removed Data</button>
+    </div>
     <h4>Data Center</h4>
-    <div id="action-buttons">
+    <div class="action-buttons">
       <button id="create_button" onclick="on()">Add Data</button>
     </div>
   </div>
@@ -69,6 +72,13 @@
      url: '/stats_reports/new',
    });
  });
+ 
+ $('#deleted_records').click(function(){
+   $.ajax({
+     type: 'POST',
+     url: '/stats_reports/view_removed_data',
+   });
+ })
 
  $(".update").click(function() {
    var id = $(this).attr("entry_id");
