@@ -1,34 +1,12 @@
-<html>
-    <div class="main">
-        <%= form_with url: reports_view_report_path do |form| %>
-            <div class="field-pair">
-                <%= form.radio_button :type, 'district_wise',:checked => true %> District Wise
-                <%= form.radio_button :type, "day_wise" %> Day Wise
-            </div>
-            <div class="field-pair">
-                <div class="label-field">
-                    <%= label_tag(:district_id, "District:") %>
-                </div>
-                <div class="label-pair">
-                    <%= select_tag "district_id[]", options_for_select(@districts.collect{|x| [x.name.capitalize, x.id]}), {multiple: true}  %>
-                </div>
-                <div class="date-field">
-                    <%= render partial: "date_selecter" %>
-                </div>
-            </div>
-
-            <div class="submit">
-                <%= form.submit "View" %>
-            </div>
-        <% end %>
-        <div id="report-partial"> </div>
-    </div>
-
-</html>
-
-<script>
-
-
+/* 
+Copyright (C) Philippe Meyer 2019
+Distributed under the MIT License
+vanillaSelectBox : v0.30 : The menu stops moving around on window resize and scroll + z-index in order of creation for multiple instances
+vanillaSelectBox : v0.26 : Corrected bug in stayOpen mode with disable() function
+vanillaSelectBox : v0.25 : New option stayOpen, and the dropbox is no longer a dropbox but a nice multi-select
+previous version : v0.24 : corrected bug affecting options with more than one class
+https://github.com/PhilippeMarcMeyer/vanillaSelectBox
+*/
 let VSBoxCounter = function () {
     let count = 0;
     return {
@@ -324,7 +302,7 @@ function vanillaSelectBox(domSelector, options) {
                     }
                     if (self.options[i].selected) {
                         nrActives++;
-                        // selectedTexts += sep + self.options[i].textContent;  //uncommment for addinf=g title
+                        selectedTexts += sep + self.options[i].textContent;
                         sep = ",";
                     }
                 }
@@ -515,14 +493,3 @@ if (!('remove' in Element.prototype)) {
         }
     };
 }
-
-
-let mySelect = new vanillaSelectBox("#district_id_",{
-    maxWidth: 500,
-    maxHeight: 300,
-    placeHolder: "Select District"
-});
-
-
-
-</script>
