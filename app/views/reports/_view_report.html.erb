@@ -1,0 +1,25 @@
+<table class="report">
+    <tr>
+        <th>District</th>
+        <th>Total no of people in observation</th>
+        <th>Total no of people at home</th>
+        <th>Total no of people at hospital</th>
+        <th>Total no of people died</th>
+
+    </tr>
+    <% if @report.present? %>
+        <% @report.each do |rep| %>
+            <tr>
+                <td><%= district_name(rep.district_id) %></td>
+                <td><%= rep.no_of_patients_under_observation %></td>
+                <td><%= rep.no_of_patients_obs_at_home %></td>
+                <td><%= rep.no_of_patients_obs_at_hospital %></td>
+                <td><%= rep.no_of_patients_died_today %></td>
+            <tr>
+        <% end %>
+    <% else %>
+    <div>
+        No Entries
+    </div>
+    <%end%>
+</table>

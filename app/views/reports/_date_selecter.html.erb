@@ -1,0 +1,9 @@
+<div class="start-date">
+    <%= label_tag(:start_date, "From :") %>
+    <%= date_field_tag(:start_date, Date.yesterday)%>
+</div>
+
+<div class="end-date">
+    <%= label_tag(:end_date, "To :") %>
+    <%= date_field_tag(:end_date, Date.today)%>
+</div>

@@ -1,0 +1,29 @@
+<html>
+    <div class="main">
+        <%= form_with url: reports_view_report_path do |form| %>
+            <div class="field-pair">
+                <div class="label-field">
+                    <%= label_tag(:district_id, "District:") %>
+                </div>
+                <div class="label-pair">
+                    <%= form.select(:district_id, options_for_select(@districts.collect{|x| [x.name.capitalize, x.id]}), {multiple: true, :id => "functions"})  %>
+                    <!-- <%= form.select(:district_id, options_for_select(@districts.map{|x| ["#{I18n.t("district.#{x.name}")}", x.id]}), {multiple: true})  %> -->
+                </div>
+            </div>
+            <div class="date-field">
+                <%= render partial: "date_selecter" %>
+            </div>
+            <div class="submit">
+                <%= form.submit "View" %>
+            </div>
+        <% end %>
+        <div id="report-partial"> </div>
+    </div>
+
+</html>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+    $("#functions").multiselect();
+    });
+    </script>

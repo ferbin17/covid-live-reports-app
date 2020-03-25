@@ -1,0 +1,44 @@
+// Place all the styles related to the reports controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+.main {
+    margin-top: 5px;
+}
+
+.field-pair {
+    padding: 1px;
+    width: 100%;
+}
+
+.label-field {
+    padding-right: 20px;
+    float: left;
+}
+
+.field-pair {
+    float: left;
+}
+
+.date-field {
+    width: 100%;
+    float: left;
+}
+
+.start-date {
+    float: left;
+    padding-right: 20px;
+}
+
+.end-date {
+    float: left;
+    padding-left: 20px;
+}
+
+.submit {
+    width: 100%;
+}
+
+.report, th, td{
+    border: 1px solid black;
+}
