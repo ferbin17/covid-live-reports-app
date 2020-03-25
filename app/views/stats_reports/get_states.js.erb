@@ -1,0 +1,10 @@
+$('#state').html(`<label>State</label><%= select :filter, :state_id, @states.map{|x| ["#{I18n.t("state.#{x.name}")}", x.id]}, prompt: "Select a State" %>`);
+
+$('#filter_state_id').change(function(){
+  value = $(this).val();
+  $.ajax({
+    type: 'POST',
+    url: '/stats_reports/view_records_data',
+    data: {state_id: value}
+  });
+})

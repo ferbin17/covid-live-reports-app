@@ -32,6 +32,14 @@
         <span><%= stats_count.count_of_patients_at_hospitals || 0 %></span>
       </div>
     </div>
+    <div class= "state_stats_ind" id="total-admitted-count">
+      <div class= "count_header" id="totalsss-count" >
+        <span><%= I18n.t("active_admin.no_of_patients_admitted") %></span>
+      </div>
+      <div class= "count_div" id="totalss-count" >
+        <span><%= stats_count.admitted_today || 0 %></span>
+      </div>
+    </div>
     <div class= "state_stats_ind" id="total-recovered-count" >
       <div class= "count_header" id="totalsss-count" >
         <span><%= I18n.t("active_admin.no_of_recovered_patient") %></span>

@@ -1,0 +1,16 @@
+$("#previous-cancelled-updation").html(`<%= render partial: "show_cancelled_entries", locals: {cancelled_data_entries: @cancelled_data_entries} %>`);
+$('#previous-cancelled-updation-button').html(`<%= link_to 'View Previous Entries', data_center_path, class: 'button_css' %>`);
+$('.digg_pagination a').each(function(){
+  $(this).attr("dummy-href", $(this).attr("href"));
+  $(this).removeAttr("href");
+  $(this).attr("onclick", "send_paginate_call($(this).attr('dummy-href'))");
+});
+function send_paginate_call(value){
+  var url = value;
+  if(url != ""){
+    $.ajax({
+      type: 'POST',
+      url: url
+    });
+  }
+}

@@ -1,0 +1,10 @@
+$('#state').html(`<%= select :filter, :state_id, @states.map{|x| ["#{I18n.t("state.#{x.name}")}", x.id]}, selected: @state.try(:id), prompt: "Select a State", onchange: "send_view_request(this.value)" %>`);
+
+$('#filter_state_id').change(function(){
+  value = $(this).val();
+  $.ajax({
+    type: 'POST',
+    url: '/stats_reports/get_districts_for_froms',
+    data: {state_id: value}
+  });
+})

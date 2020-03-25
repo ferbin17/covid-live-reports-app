@@ -1,0 +1,28 @@
+<table class="last-update" width="100%">
+  <tr class="header">
+    <td><%= I18n.t('district_text') %></td>
+    <td><%= I18n.t('latitude') %></td>
+    <td><%= I18n.t('longitude') %></td>
+    <td><%= I18n.t('total_no_of_patients') %></td>
+    <td><%= I18n.t('total_no_of_patients_in_observation') %></td>
+    <td><%= I18n.t('total_no_of_patients_in_observation_at_home') %></td>
+    <td><%= I18n.t('total_no_of_patients_in_observation_at_hospital') %></td>
+    <td><%= I18n.t('total_no_of_patients_admitted_today') %></td>
+    <td><%= I18n.t('total_no_of_patients_recovered_today') %></td>
+    <td><%= I18n.t('total_no_of_patients_died_today') %></td>
+  </tr>
+  <% stats_counts.each do |stats_count| %>
+    <tr>
+      <td><%= I18n.t("district.#{stats_count.district.name}") %></td>
+      <td><%= stats_count.district.try(:latitude) %></td>
+      <td><%= stats_count.district.try(:longitude) %></td>
+      <td><%= stats_count.total_count_of_patients %></td>
+      <td><%= stats_count.count_of_patients_under_obs %></td>
+      <td><%= stats_count.count_of_patients_at_homes %></td>
+      <td><%= stats_count.count_of_patients_at_hospitals %></td>
+      <td><%= stats_count.admitted_today %></td>
+      <td><%= stats_count.total_recovered %></td>
+      <td><%= stats_count.total_died %></td>
+    </tr>
+  <% end %>
+</table>

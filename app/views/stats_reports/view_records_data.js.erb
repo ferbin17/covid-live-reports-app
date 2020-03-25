@@ -1,0 +1,1 @@
+$('#district-wise-report').html(`<% if @stats_counts.present? %><%= render partial: "stats_reports/show_live_report", locals: {stats_counts: @stats_counts} %><% end %></div>`);

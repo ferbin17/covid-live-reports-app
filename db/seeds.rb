@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-AdminUser.create!(email: "admin@example.com", password: "password")
+AdminUser.create!(email: "admin@example.com", name: "Super Admin", password: "password")
 Country.create!(name: "india")
 State.create!(name: "kerala", country_id: 1)
 District.create!(name: "alappuzha", state_id: 1)

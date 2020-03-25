@@ -1,0 +1,105 @@
+<%= form_for stats_report, remote: true do |f| %>
+  <table id="stats_report-table">
+    <% if stats_report.errors.any? %>
+      <div class="alert alert-danger">
+        <ul>
+          <% stats_report.errors.each do |key, error| %>
+            <li><%= error %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    
+  <% if stats_report.new_record? %>
+    <tr>
+      <td class="first-field" width = "20%"><label>Country</label></td><td width = "30%"><div id="country"><%= select :filter, :country_id, @countries.map{|x| ["#{I18n.t("country.#{x.name}")}", x.id]}, selected: @country.try(:id), prompt: "Select a Country", onChange: "get_states(this.value)" %></div></td>
+      <td class="second-field" width = "20%"><label>State</label></td><td width = "30%"><div id="state"><%= select :filter, :state_id, @states.map{|x| ["#{I18n.t("state.#{x.name}")}", x.id]}, selected: @state.try(:id), prompt: "Select a State", onchange: "send_view_request(this.value)" %></div></td>
+    </tr>
+  <% end %>
+    <tr>
+      <td class="first-field" width = "20%"><%= f.label :date %> </td><td width = "30%"><%= f.date_select :date %></td>
+      <td class="second-field" width = "20%"><%= f.label :district_id %> </td><td width = "30%" id="district">
+        <% if stats_report.new_record? %>
+          <%= f.select :district_id, @districts.map{|x| ["#{I18n.t("district.#{x.name}")}", x.id]}, selected: @district.try(:id) %>
+        <% else %>
+          <%= text_field :dummy, :district, value: I18n.t("district.#{stats_report.district.try(:name)}"), disabled: true, class: "textfield-number" %>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <td class="first-field"><%= f.label :total_no_patients %></td><td><%= f.text_field :total_no_patients, disabled: true, class: "textfield-number" %></td>
+      <td class="second-field"><%= f.label :no_of_patients_under_observation %></td><td><%= f.text_field :no_of_patients_under_observation, disabled: true, class: "textfield-number" %></td>
+    </tr>
+    <tr>
+      <td class="first-field"><%= f.label :no_of_patients_obs_at_home %></td><td><%= f.text_field :no_of_patients_obs_at_home, class: "textfield-number" %></td>
+      <td class="second-field"><%= f.label :no_of_patients_obs_at_hospital %></td><td><%= f.text_field :no_of_patients_obs_at_hospital, class: "textfield-number" %></td>
+    </tr>
+    <tr>
+      <td class="first-field"><%= f.label :no_of_patients_admitted_today %></td><td><%= f.text_field :no_of_patients_admitted_today, class: "textfield-number" %></td>
+      <td class="second-field"><%= f.label :no_of_patients_recovered_today %></td><td><%= f.text_field :no_of_patients_recovered_today, class: "textfield-number" %></td>
+    </tr>
+    <tr>
+      <td class="first-field"><%= f.label :no_of_patients_died_today %></td><td><%= f.text_field :no_of_patients_died_today, class: "textfield-number" %></td>
+    </tr>
+    <tr>
+      <td colspan="2" align="center"><%= f.submit "Save", class: "button_css green_button width-100px float-right" %></td><td colspan="2" align="center"> <button class="width-100px red_button button_css" type="button" onclick="off()">Cancel</button></td>
+    </tr>
+  </table>
+<% end %>
+
+<script>
+  $('.textfield-number').keyup(function(){
+    var reg = /^\d+$/;
+    if(!reg.test($(this).val())){
+      $(this).val($(this).val().replace(/\D/g,''));
+    }
+    var sum = 0
+    $('.textfield-number').each(function(){
+      var no = 0;
+      if(($(this).attr("id") == "stats_report_no_of_patients_obs_at_home")){
+        no = $(this).val().replace(/\D/g,'');
+      }
+      if(($(this).attr("id") == "stats_report_no_of_patients_obs_at_hospital")){
+        no = $(this).val().replace(/\D/g,'');
+      }
+      if(no != ""){
+        sum += parseInt(no);
+      }
+    });
+    $('#stats_report_no_of_patients_under_observation').val(sum);
+    sum = 0;
+    $('.textfield-number').each(function(){
+      var no = 0;
+      if(($(this).attr("id") == "stats_report_no_of_patients_under_observation") || ($(this).attr("id") == "stats_report_no_of_patients_admitted_today")){
+        no = $(this).val().replace(/\D/g,'');
+      }
+      if(no != ""){
+        sum += parseInt(no);
+      }
+
+    });
+    $('#stats_report_total_no_patients').val(sum);
+   })
+   
+   $('#filter_country_id').change(function(){
+     value = $(this).val();
+     $.ajax({
+       type: 'POST',
+       url: '/stats_reports/get_states_for_forms',
+       data: {country_id: value}
+     });
+   })
+   
+   $('#new_stats_report').submit(function(){
+     var country = $('#filter_country_id').val();
+     var state = $('#filter_state_id').val();
+     if(country == ""){ 
+       alert("Select a Country");
+       return false;
+     }
+     if(state == ""){
+       alert("Select a State");
+       return false;
+     }
+   })
+ </script>
