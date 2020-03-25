@@ -30,5 +30,4 @@
 yarn-debug.log*
 .yarn-integrity
 
-/db/
 /db/schema.rb
