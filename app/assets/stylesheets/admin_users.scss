@@ -99,17 +99,23 @@ table#stats_report-table td.second-field{
 }
 
 table#entries-table{
-  border: 1px solid black
+  border: 1px solid black;
+  table-layout: fixed;
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap;
 }
 
 table#entries-table td{
-  width: 50px;
   border: 1px solid black;
   padding: 5px 10px;
+  text-align: center;
 }
 
-table #entries-tabletr.header{
+table#entries-table tr.header td{
   text-align: center;
+  font-style: normal;
+  font-weight: bold;
 }
 
 #overlay {
@@ -189,8 +195,18 @@ table #entries-tabletr.header{
   *:first-child + html .digg_pagination {
     overflow: hidden; }
 
+.update{
+  width: 50%;
+  float: left;
+}
+
 .update span:hover{
   cursor: pointer;
+}
+
+.destroy{
+  width: 50%;
+  float: left;
 }
 
 .destroy span:hover{
@@ -224,7 +240,11 @@ table #entries-tabletr.header{
 }
 
 table.last-update{
-  border: 1px solid black
+  border: 1px solid black;
+  table-layout: fixed;
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap;
 }
 
 table.last-update td{
@@ -235,6 +255,7 @@ table.last-update td{
 
 table.last-update tr.header{
   text-align: center;
+  font-weight: bold;
 }
 
 #create_button{
@@ -248,8 +269,8 @@ table.last-update tr.header{
 
 #previous-cancelled-updation{
   width: 1000px;
+  height: 650px;
   margin: 0 auto;
-  display: table;
   overflow-x: scroll;
 }
 
@@ -263,7 +284,18 @@ table.last-update tr.header{
   font-weight: bold;
 }
 
-#cancelled-button{
-  width: 110px;
-  margin: 10px auto;
+#stats_report_date_1i{
+  width: 80px;
+}
+
+#stats_report_date_2i{
+  width: 100px;
+}
+
+#stats_report_date_3i{
+  width: 50px;
+}
+
+#last-entry-report, #district-wise-report, #previous-updation-table, #cancelled-updation{
+  padding: 20px 0;
 }

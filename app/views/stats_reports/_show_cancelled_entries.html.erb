@@ -13,7 +13,7 @@
         <td><%= I18n.t('total_no_of_patients_admitted_today') %></td>
         <td><%= I18n.t('total_no_of_patients_recovered_today') %></td>
         <td><%= I18n.t('total_no_of_patients_died_today') %></td>
-        <td><%= I18n.t('updated_by') %></td>
+        <td><%= I18n.t('deleted_by') %></td>
       </tr>
       <% cancelled_data_entries.each do |entry| %>
       <tr>
@@ -35,7 +35,4 @@
       <%= will_paginate cancelled_data_entries, :container => false %>
     </div>
   <% end %>
-  <div id="cancelled-button">
-    <button class="width-100px button_css" type="button" name="button" onclick="off()">Back</button>
-  </div>
 </div>

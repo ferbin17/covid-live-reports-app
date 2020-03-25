@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :admin_users
+  devise_for :admin_users, skip: [:registrations]
   resources :stats_reports
   
   #admin_users

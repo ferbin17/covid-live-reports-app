@@ -16,38 +16,40 @@
   <div id="previous-cancelled-updation">
     <h5>Previous Data Entries</h5>
     <% if @previous_entries.present? %>
-      <table id="entries-table" width="100%">
-        <tr class="header">
-          <td><%= I18n.t('created_at') %></td>
-          <td><%= I18n.t('update_date') %></td>
-          <td><%= I18n.t('district_text') %></td>
-          <td><%= I18n.t('total_no_of_patients') %></td>
-          <td><%= I18n.t('total_no_of_patients_in_observation') %></td>
-          <td><%= I18n.t('total_no_of_patients_in_observation_at_home') %></td>
-          <td><%= I18n.t('total_no_of_patients_in_observation_at_hospital') %></td>
-          <td><%= I18n.t('total_no_of_patients_admitted_today') %></td>
-          <td><%= I18n.t('total_no_of_patients_recovered_today') %></td>
-          <td><%= I18n.t('total_no_of_patients_died_today') %></td>
-          <td><%= I18n.t('updated_by') %></td>
-          <td><%= I18n.t('actions') %></td>
-        </tr>
-        <% @previous_entries.each do |entry| %>
-        <tr>
-          <td><%= entry.created_at.strftime("%d-%m-%Y %I:%M %p") %></td>
-          <td><%= entry.date.strftime("%d-%m-%Y") %></td>
-          <td><%= I18n.t("district.#{entry.district.name}") %></td>
-          <td><%= entry.total_no_patients %></td>
-          <td><%= entry.no_of_patients_under_observation %></td>
-          <td><%= entry.no_of_patients_obs_at_home %></td>
-          <td><%= entry.no_of_patients_obs_at_hospital %></td>
-          <td><%= entry.no_of_patients_admitted_today %></td>
-          <td><%= entry.no_of_patients_recovered_today %></td>
-          <td><%= entry.no_of_patients_died_today %></td>
-          <td><%= entry.admin_user.try(:name) %></td>
-          <td align="center"><div entry_id="<%= entry.id %>" class="update"><span class="material-icons">update</span></div><div entry_id="<%= entry.id %>" class="destroy"><span class="material-icons">delete</span></div></td>
-        </tr>
-        <% end %>
-      </table>
+      <div id="previous-updation-table">
+        <table id="entries-table" width="100%">
+          <tr class="header">
+            <td><%= I18n.t('created_at') %></td>
+            <td><%= I18n.t('update_date') %></td>
+            <td><%= I18n.t('district_text') %></td>
+            <td><%= I18n.t('total_no_of_patients') %></td>
+            <td><%= I18n.t('total_no_of_patients_in_observation') %></td>
+            <td><%= I18n.t('total_no_of_patients_in_observation_at_home') %></td>
+            <td><%= I18n.t('total_no_of_patients_in_observation_at_hospital') %></td>
+            <td><%= I18n.t('total_no_of_patients_admitted_today') %></td>
+            <td><%= I18n.t('total_no_of_patients_recovered_today') %></td>
+            <td><%= I18n.t('total_no_of_patients_died_today') %></td>
+            <td><%= I18n.t('updated_by') %></td>
+            <td><%= I18n.t('actions') %></td>
+          </tr>
+          <% @previous_entries.each do |entry| %>
+          <tr>
+            <td><%= entry.created_at.strftime("%d-%m-%Y %I:%M %p") %></td>
+            <td><%= entry.date.strftime("%d-%m-%Y") %></td>
+            <td><%= I18n.t("district.#{entry.district.name}") %></td>
+            <td><%= entry.total_no_patients %></td>
+            <td><%= entry.no_of_patients_under_observation %></td>
+            <td><%= entry.no_of_patients_obs_at_home %></td>
+            <td><%= entry.no_of_patients_obs_at_hospital %></td>
+            <td><%= entry.no_of_patients_admitted_today %></td>
+            <td><%= entry.no_of_patients_recovered_today %></td>
+            <td><%= entry.no_of_patients_died_today %></td>
+            <td><%= entry.admin_user.try(:name) %></td>
+            <td align="center"><div entry_id="<%= entry.id %>" class="update"><span class="material-icons">update</span></div><div entry_id="<%= entry.id %>" class="destroy"><span class="material-icons">delete</span></div></td>
+          </tr>
+          <% end %>
+        </table>
+      </div>
       <div class="digg_pagination">
         <%= will_paginate @previous_entries, :container => false %>
       </div>

@@ -75,6 +75,7 @@ en:
   created_at: "Entry created at"
   actions: "Actions"
   update_date: "Update Date"
+  deleted_by: "Deleted by"
   
   country: "Country"
   countries: "Countries"

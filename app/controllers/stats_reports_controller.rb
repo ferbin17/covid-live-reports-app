@@ -29,7 +29,7 @@ class StatsReportsController < ApplicationController
     @district = @stats_report.district
     if @stats_report.save
       flash[:notice] = "Data added"
-      redirect_to :controller => "admin_users", :action => "detailed_report"
+      redirect_to :controller => "admin_users", :action => "data_center"
     else
       respond_to :js
     end
@@ -44,7 +44,7 @@ class StatsReportsController < ApplicationController
     if @stats_report.present?
       if @stats_report.update(construct_params)
         flash[:notice] = "Data updated"
-        redirect_to :controller => "admin_users", :action => "detailed_report"
+        redirect_to :controller => "admin_users", :action => "data_center"
       else
         @districts = District.all
         respond_to :js
