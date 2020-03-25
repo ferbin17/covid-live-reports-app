@@ -1,16 +1,26 @@
-<h2>Forgot your password?</h2>
-
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<div id="id01" class="modal1 border">  
+  
+  <div class="container login-container">
+    <h4>Forgot your password?</h4>
+    <div class="imgcontainer">
+      <%= image_tag("/login.png") %>
+    </div>
   </div>
+  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+    <div id="devise-errors">
+      <%= render "devise/shared/error_messages", resource: resource %>
+    </div>
 
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
-  </div>
-<% end %>
+    <div class="field container">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    </div>
 
-<%= render "devise/shared/links" %>
+    <div class="actions container"  style="background-color:#f1f1f1">
+      <%= f.submit "Send me reset password instructions", class: "button_css send-me-mail" %>
+      <%- if controller_name != 'sessions' %>
+        <%= link_to "Log in", new_session_path(resource_name), class: "button_css login float-right forget-login" %><br />
+      <% end %>
+    </div>
+  <% end %>
+</div>

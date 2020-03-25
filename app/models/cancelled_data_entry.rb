@@ -1,13 +1,9 @@
-class StatsReport < ApplicationRecord
+class CancelledDataEntry < ApplicationRecord
   belongs_to :district
   belongs_to :admin_user
   
   validates_presence_of :date, :district_id
   validate :check_for_atleast_one_data
-
-  before_destroy :create_cancelled_data_entry
-  
-  scope :sum_values, -> { select('sum(total_no_patients) as total_count_of_patients, sum(no_of_patients_under_observation) as count_of_patients_under_obs, sum(no_of_patients_obs_at_home) as count_of_patients_at_homes, sum(no_of_patients_obs_at_hospital) as count_of_patients_at_hospitals, sum(no_of_patients_admitted_today) as admitted_today, sum(no_of_patients_recovered_today) as total_recovered, sum(no_of_patients_died_today) as total_died') }
   
   self.per_page = 5
   
@@ -20,11 +16,5 @@ class StatsReport < ApplicationRecord
       (self.no_of_patients_died_today == 0 || self.no_of_patients_died_today.nil?))
       self.errors.add(:base, :enter_atleast_one_data)
     end
-  end
-  
-  def create_cancelled_data_entry
-    cancelled_data_entry = CancelledDataEntry.new(self.attributes)
-    cancelled_data_entry.admin_user_id = AdminUser.current.id
-    cancelled_data_entry.save
   end
 end

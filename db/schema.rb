@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_23_144457) do
+ActiveRecord::Schema.define(version: 2020_03_25_061213) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,8 +23,25 @@ ActiveRecord::Schema.define(version: 2020_03_23_144457) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "name"
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+  end
+
+  create_table "cancelled_data_entries", force: :cascade do |t|
+    t.integer "district_id", null: false
+    t.date "date", null: false
+    t.integer "total_no_patients", default: 0
+    t.integer "no_of_patients_under_observation", default: 0
+    t.integer "no_of_patients_obs_at_home", default: 0
+    t.integer "no_of_patients_obs_at_hospital", default: 0
+    t.integer "no_of_patients_admitted_today", default: 0
+    t.integer "no_of_patients_recovered_today", default: 0
+    t.integer "no_of_patients_died_today", default: 0
+    t.bigint "admin_user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["admin_user_id"], name: "index_cancelled_data_entries_on_admin_user_id"
   end
 
   create_table "countries", force: :cascade do |t|
@@ -49,16 +66,17 @@ ActiveRecord::Schema.define(version: 2020_03_23_144457) do
 
   create_table "stats_reports", force: :cascade do |t|
     t.integer "district_id", null: false
-    t.integer "total_no_patients"
-    t.integer "no_of_patients_under_observation"
-    t.integer "no_of_patients_obs_at_home"
-    t.integer "no_of_patients_obs_at_hospital"
-    t.integer "no_of_patients_admitted_today"
+    t.date "date", null: false
+    t.integer "total_no_patients", default: 0
+    t.integer "no_of_patients_under_observation", default: 0
+    t.integer "no_of_patients_obs_at_home", default: 0
+    t.integer "no_of_patients_obs_at_hospital", default: 0
+    t.integer "no_of_patients_admitted_today", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.date "date", null: false
     t.integer "no_of_patients_recovered_today", default: 0
     t.integer "no_of_patients_died_today", default: 0
+    t.integer "admin_user"
   end
 
 end

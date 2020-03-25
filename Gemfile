@@ -58,3 +58,5 @@ gem 'devise'
 gem 'hirb'
 
 gem 'will_paginate'
+
+gem 'bootstrap', '~> 4.0.0'

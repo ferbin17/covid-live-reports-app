@@ -86,21 +86,16 @@ table#stats_report-table td.second-field{
 }
 
 #head-section{
- display: flex;
- margin: 15px auto;
+  margin: 15px auto;
 }
 
 #head-section h4{
-  width: 74%;
+  width: 100%;
   float: left;
 }
 
 .action-buttons{
-  float: left;
-}
-
-#create_button{
-  width: 93px;
+  margin-bottom: 20px;
 }
 
 table#entries-table{
@@ -108,6 +103,7 @@ table#entries-table{
 }
 
 table#entries-table td{
+  width: 50px;
   border: 1px solid black;
   padding: 5px 10px;
 }
@@ -199,4 +195,75 @@ table #entries-tabletr.header{
 
 .destroy span:hover{
   cursor: pointer;
+}
+
+#filters{
+  display: flex;
+  margin: 10px auto;
+}
+.filter-fields{
+  width: 500px;
+  float: left;
+}
+
+.filter-fields label{
+  margin: 0 20px;
+}
+
+#last-entry-heading{
+  margin: 15px auto;
+  text-align: center;
+}
+.heading-div{
+  margin: 15px auto;
+  text-align: center;
+}
+
+.heading-div h4{
+  font-weight: bolder !important;
+}
+
+table.last-update{
+  border: 1px solid black
+}
+
+table.last-update td{
+  text-align: center;
+  border: 1px solid black;
+  padding: 5px 10px;
+}
+
+table.last-update tr.header{
+  text-align: center;
+}
+
+#create_button{
+  width: 100px !important;
+  background-color: #4CAF50;
+}
+
+#deleted_records{
+  background-color: #f44336;
+}
+
+#previous-cancelled-updation{
+  width: 1000px;
+  margin: 0 auto;
+  display: table;
+  overflow-x: scroll;
+}
+
+#previous-cancelled-updation h5{
+  text-align: center;
+  font-weight: bold;
+}
+
+#cancelled-updation h4{
+  text-align: center;
+  font-weight: bold;
+}
+
+#cancelled-button{
+  width: 110px;
+  margin: 10px auto;
 }

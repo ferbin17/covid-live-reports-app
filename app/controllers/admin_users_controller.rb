@@ -5,12 +5,13 @@ class AdminUsersController < ApplicationController
   end
   
   def detailed_report
+    @countries = Country.all
+    @states = []
     @last_entry = StatsReport.last
-    @stats_counts = StatsReport.sum_values.select('district_id').group(:district_id)
   end
   
   def data_center
-    @previous_entries = StatsReport.paginate(:page => params[:page]).order(:id)
+    @previous_entries = StatsReport.paginate(:page => params[:page]).order(id: :desc)
   end
   
   def manage_district_or_state

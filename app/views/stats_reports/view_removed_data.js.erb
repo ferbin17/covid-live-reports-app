@@ -1,0 +1,2 @@
+$("#previous-cancelled-updation").html(`<%= render partial: "show_cancelled_entries", locals: {cancelled_data_entries: @cancelled_data_entries} %>`);
+$('#previous-cancelled-updation-button').html(`<%= link_to 'View Previous Entries', data_center_path, class: 'button_css' %>`);

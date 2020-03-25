@@ -48,6 +48,10 @@ en:
           attributes:
             base:
               enter_atleast_one_data: "Enter data in atleast column"
+        cancelled_data_entry:
+          attributes:
+            base:
+              enter_atleast_one_data: "Enter data in atleast column"
   hello: "Hello world"
   active_admin: 
     total_no_patients: "Total no of patients"
@@ -57,6 +61,8 @@ en:
     no_of_patients_admitted: "Total no of patients admitted"
     no_of_recovered_patient: "Total no of patients recovered"
     no_of_death: "Total no of death"
+  latitude: "Latitude"
+  longitude: "Longitude"
   total_no_of_patients: "Total no of patients"
   total_no_of_patients_in_observation: "Total no of patients in observation"
   total_no_of_patients_in_observation_at_home: "Total no of patients in observation at home"
@@ -64,10 +70,16 @@ en:
   total_no_of_patients_admitted_today: "Total no of patients admitted today"
   total_no_of_patients_recovered_today: "Total no of patients recovered today"
   total_no_of_patients_died_today: "Total no of patients died today"
+  updated_by: "Updated by"
   date_text: "Entry Date"
   created_at: "Entry created at"
   actions: "Actions"
+  update_date: "Update Date"
   
+  country: "Country"
+  countries: "Countries"
+  country:
+    india: "India"
   state: "State"
   state:
     kerala: "Kerala"

@@ -1,20 +1,25 @@
 <div id="data-center">
   <div id="head-section"> 
-    <div class="action-buttons">
-      <button id="deleted_records" onclick="on()">View Removed Data</button>
+    <div id=heading-container">
+      <h4>Data Center</h4>
     </div>
-    <h4>Data Center</h4>
-    <div class="action-buttons">
-      <button id="create_button" onclick="on()">Add Data</button>
+    <div id="action-buttons-container">
+      <div id="previous-cancelled-updation-button" class="action-buttons float-left">
+        <button id="deleted_records" class="button_css">View Removed Data</button>
+      </div>
+      <div class="action-buttons float-right">
+        <button id="create_button" class="button_css" onclick="on()">Add Data</button>
+      </div>
     </div>
   </div>
   
-  <div id="previous-updation">
+  <div id="previous-cancelled-updation">
+    <h5>Previous Data Entries</h5>
     <% if @previous_entries.present? %>
       <table id="entries-table" width="100%">
         <tr class="header">
           <td><%= I18n.t('created_at') %></td>
-          <td><%= I18n.t('date_text') %></td>
+          <td><%= I18n.t('update_date') %></td>
           <td><%= I18n.t('district_text') %></td>
           <td><%= I18n.t('total_no_of_patients') %></td>
           <td><%= I18n.t('total_no_of_patients_in_observation') %></td>
@@ -23,6 +28,7 @@
           <td><%= I18n.t('total_no_of_patients_admitted_today') %></td>
           <td><%= I18n.t('total_no_of_patients_recovered_today') %></td>
           <td><%= I18n.t('total_no_of_patients_died_today') %></td>
+          <td><%= I18n.t('updated_by') %></td>
           <td><%= I18n.t('actions') %></td>
         </tr>
         <% @previous_entries.each do |entry| %>
@@ -37,6 +43,7 @@
           <td><%= entry.no_of_patients_admitted_today %></td>
           <td><%= entry.no_of_patients_recovered_today %></td>
           <td><%= entry.no_of_patients_died_today %></td>
+          <td><%= entry.admin_user.try(:name) %></td>
           <td align="center"><div entry_id="<%= entry.id %>" class="update"><span class="material-icons">update</span></div><div entry_id="<%= entry.id %>" class="destroy"><span class="material-icons">delete</span></div></td>
         </tr>
         <% end %>
@@ -94,9 +101,11 @@
    if(result){
      var id = $(this).attr("entry_id");
      var url = '/stats_reports/' + id;
+     var page_no = "'" + <%= params[:page] %> +"'";
      $.ajax({
        type: 'DELETE',
-       url: url
+       url: url,
+       data: {page: page_no}
      });
    }
   });

@@ -1,0 +1,1 @@
+$('#district').html(`<%= select :stats_report, :district_id, @districts.map{|x| ["#{I18n.t("district.#{x.name}")}", x.id]}, selected: @district.try(:id) %>`);

@@ -1,12 +1,14 @@
 <% if @last_entry.present? %>
   <div id="last-entry">
-    <div id="last-entry-heading">
-      <h5>Last Data Entry</h5>
+    <div id="last-entry-heading"class= "heading-div">
+      <h4>Last Data Entry</h4>
     </div>
     <div id="last-entry-report">
-      <table width="100%">
+      <table class="last-update" width="100%">
         <tr class="header">
           <td><%= I18n.t('district_text') %></td>
+          <td><%= I18n.t('latitude') %></td>
+          <td><%= I18n.t('longitude') %></td>
           <td><%= I18n.t('total_no_of_patients') %></td>
           <td><%= I18n.t('total_no_of_patients_in_observation') %></td>
           <td><%= I18n.t('total_no_of_patients_in_observation_at_home') %></td>
@@ -14,9 +16,12 @@
           <td><%= I18n.t('total_no_of_patients_admitted_today') %></td>
           <td><%= I18n.t('total_no_of_patients_recovered_today') %></td>
           <td><%= I18n.t('total_no_of_patients_died_today') %></td>
+          <td><%= I18n.t('updated_by') %></td>
         </tr>
         <tr>
           <td><%= I18n.t("district.#{@last_entry.district.name}") %></td>
+          <td><%= @last_entry.district.try(:latitude) %></td>
+          <td><%= @last_entry.district.try(:longitude) %></td>
           <td><%= @last_entry.total_no_patients %></td>
           <td><%= @last_entry.no_of_patients_under_observation %></td>
           <td><%= @last_entry.no_of_patients_obs_at_home %></td>
@@ -24,71 +29,41 @@
           <td><%= @last_entry.no_of_patients_admitted_today %></td>
           <td><%= @last_entry.no_of_patients_recovered_today %></td>
           <td><%= @last_entry.no_of_patients_died_today %></td>
+          <td><%= @last_entry.admin_user.try(:name) %></td>
         </tr>
       </table>
     </div>
   </div>
 <% end %>
-<div id="heading-div">
+<div class="heading-div">
   <h4>Live Overall Stats (<%= Date.today.strftime("%d-%m-%Y") %>)</h4>
 </div>
 
 <!-- #add filters if needed -->
 <div id="filters">
+  <div id="country" class="filter-fields">
+    <label>Country</label>
+    <%= select :filter, :country_id, @countries.map{|x| ["#{I18n.t("country.#{x.name}")}", x.id]}, prompt: "Select a Country", onChange: "get_states(this.value)" %>
+  </div>
+  <div id="state" class="filter-fields">
+    <label>State</label>
+    <%= select :filter, :state_id, @states.map{|x| ["#{I18n.t("state.#{x.name}")}", x.id]}, prompt: "Select a State", onchange: "send_view_request(this.value)" %>
+  </div>
 </div>
 
 <!-- #table that shows the latest data -->
 <div id="district-wise-report">
-  <table width="100%">
-    <tr class="header">
-      <td><%= I18n.t('district_text') %></td>
-      <td><%= I18n.t('total_no_of_patients') %></td>
-      <td><%= I18n.t('total_no_of_patients_in_observation') %></td>
-      <td><%= I18n.t('total_no_of_patients_in_observation_at_home') %></td>
-      <td><%= I18n.t('total_no_of_patients_in_observation_at_hospital') %></td>
-      <td><%= I18n.t('total_no_of_patients_admitted_today') %></td>
-      <td><%= I18n.t('total_no_of_patients_recovered_today') %></td>
-      <td><%= I18n.t('total_no_of_patients_died_today') %></td>
-    </tr>
-    <% @stats_counts.each do |stats_count| %>
-      <tr>
-        <td><%= I18n.t("district.#{stats_count.district.name}") %></td>
-        <td><%= stats_count.total_count_of_patients %></td>
-        <td><%= stats_count.count_of_patients_under_obs %></td>
-        <td><%= stats_count.count_of_patients_at_homes %></td>
-        <td><%= stats_count.count_of_patients_at_hospitals %></td>
-        <td><%= stats_count.admitted_today %></td>
-        <td><%= stats_count.total_recovered %></td>
-        <td><%= stats_count.total_died %></td>
-      </tr>
-    <% end %>
-  </table>
+  <% if @stats_counts.present? %>
+    <%= render partial: "stats_reports/show_live_report", locals: {stats_counts: @stats_counts} %>
+  <% end %>
 </div>
-<style>
-  
-#last-entry-heading{
-  margin: 15px auto;
-  text-align: center;
-}
-#heading-div{
-  margin: 15px auto;
-  text-align: center;
-}
-
-#heading-div h4{
-  font-weight: bolder !important;
-}
-
-table{
-  border: 1px solid black
-}
-
-table td{
-  border: 1px solid black;
-  padding: 5px 10px;
-}
-
-table tr.header{
-  text-align: center;
-}
-</style>
+<script>
+  $('#filter_country_id').change(function(){
+    value = $(this).val();
+    $.ajax({
+      type: 'POST',
+      url: '/stats_reports/get_states',
+      data: {country_id: value}
+    });
+  })
+</script>
