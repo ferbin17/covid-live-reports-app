@@ -1,38 +1,37 @@
 <% if @report.present? %>
-    <table class="report">
-        <tr>
-            <th>District</th>
-            <% unless @is_district_wise %>
-                <th>Date</th>
-            <% end %>
-            <th>Total no of people in observation</th>
-            <th>Total no of people at home</th>
-            <th>Total no of people at hospital</th>
-            <th>Total no of people died</th>
-
-        </tr>
-        <% @report.each do |rep| %>
-            <tr>
-                <td><%= district_name(rep.district_id) %></td>
-                <% unless @is_district_wise %>
-                    <td><%= rep.date %></td>
-                <% end %>
-                <td><%= rep.no_of_patients_under_observation %></td>
-                <td><%= rep.no_of_patients_obs_at_home %></td>
-                <td><%= rep.no_of_patients_obs_at_hospital %></td>
-                <td><%= rep.no_of_patients_died_today %></td>
-            <tr>
-        <% end %>
-        <tr>
-           <th colspan= <%="#{@is_district_wise ? 1 : 2}"%>>Total</th> 
-            <td> <%= @total.total_obs %> </td>
-            <td> <%= @total.total_obs_home %> </td>
-            <td> <%= @total.total_obs_hospital %> </td>
-            <td> <%= @total.died %> </td>
-        </tr>
-    </table>
+  <table class="report">
+    <tr>
+      <th>District</th>
+    <% unless @is_district_wise %>
+      <th>Date</th>
+    <% end %>
+      <th>Total no of people in observation</th>
+      <th>Total no of people at home</th>
+      <th>Total no of people at hospital</th>
+      <th>Total no of people died</th>
+    </tr>
+  <% @report.each do |rep| %>
+    <tr>
+      <td><%= district_name(rep.district_id) %></td>
+    <% unless @is_district_wise %>
+      <td><%= rep.date %></td>
+    <% end %>
+      <td><%= rep.no_of_patients_under_observation %></td>
+      <td><%= rep.no_of_patients_obs_at_home %></td>
+      <td><%= rep.no_of_patients_obs_at_hospital %></td>
+      <td><%= rep.no_of_patients_died_today %></td>
+    <tr>
+  <% end %>
+    <tr>
+       <th colspan= <%="#{@is_district_wise ? 1 : 2}"%>>Total</th> 
+        <td> <%= @total.total_obs %> </td>
+        <td> <%= @total.total_obs_home %> </td>
+        <td> <%= @total.total_obs_hospital %> </td>
+        <td> <%= @total.died %> </td>
+    </tr>
+  </table>
 <% else %>
-    <div class="no-entries">
-        No Entries
-    </div>
+  <div class="no-entries">
+    No Entries
+  </div>
 <%end%>
