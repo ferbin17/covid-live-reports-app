@@ -39,4 +39,5 @@ class StatsReport < ApplicationRecord
     report = report.filter_by_date(start_date, end_date) if params[:start_date].present?
     report = report.group_by_district if params[:type] == "district_wise"
     return report
+  end
 end

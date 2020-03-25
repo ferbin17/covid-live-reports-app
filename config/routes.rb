@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
   devise_for :admin_users, skip: [:registrations]
+  as :admin_user do
+  get 'edit', to: 'devise/registrations#edit', as: :edit_admin_user_registration
+  patch '/', to: 'devise/registrations#update', as: :admin_user_registration
+  put '/', to: 'devise/registrations#update', as: :admin_user_registration_update
+  delete '/', to: 'devise/registrations#destroy', as: :destroy_user_account
+end
   resources :stats_reports
   resources :reports
   
