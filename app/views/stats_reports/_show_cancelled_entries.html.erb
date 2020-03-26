@@ -34,5 +34,9 @@
     <div class="digg_pagination">
       <%= will_paginate cancelled_data_entries, :container => false %>
     </div>
+  <% else %>
+    <div class="no-entries">
+      No Entries
+    </div>
   <% end %>
 </div>

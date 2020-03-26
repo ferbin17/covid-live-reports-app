@@ -1,0 +1,9 @@
+$("#stats_report-form").html(`<%= render partial: "csv_import_form", locals: {import_csv_log: @import_csv_log} %>`);
+on();
+$('#new_import_csv_log').submit(function(){
+  value = $('#import_csv_log_csv_file').val()
+  if(value == ""){
+    alert("Select a file");
+    return false;
+  }
+});

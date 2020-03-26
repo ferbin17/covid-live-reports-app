@@ -1,0 +1,21 @@
+<div id="import-csv-form">
+  <h4>Add Data by CSV File</h4>
+  <%= form_for import_csv_log, remote: true, multipart: true do |f| %>
+  <% if import_csv_log.errors.any? %>
+    <div class="alert alert-danger">
+      <ul>
+        <% import_csv_log.errors.full_messages.each do |error| %>
+          <li><%= error %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <div id="upload-file-field">
+      <label>Choose a csv file</label><br><%= f.file_field :import_csv_file %>
+    </div>
+    <div id="import-csv-buttons">
+      <%= submit_tag( "Import", class: "width-100px green_button button_css" ) %>
+      <button id="cancel_import_csv" class="button_css float-right width-100px" onclick="off()">Cancel</button>
+    </div>
+  <% end %>
+</div>

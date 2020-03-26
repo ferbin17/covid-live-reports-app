@@ -1,4 +1,5 @@
 class StatsReport < ApplicationRecord
+  require 'csv'
   belongs_to :district
   belongs_to :admin_user
   
@@ -40,4 +41,17 @@ class StatsReport < ApplicationRecord
     report = report.group_by_district if params[:type] == "district_wise"
     return report
   end
+  
+  def self.export_csv
+    csv_string = CSV.generate do |csv|
+      cols = []
+      ["date_text_for_csv", "district_text", "total_no_of_patients_in_observation_at_home", "total_no_of_patients_in_observation_at_hospital", "total_no_of_patients_admitted_today", "total_no_of_patients_recovered_today", "total_no_of_patients_died_today"].each do |attribute|
+        string = I18n.t(attribute)
+        cols << string
+      end
+      csv << cols
+    end
+    return csv_string
+  end
+  
 end

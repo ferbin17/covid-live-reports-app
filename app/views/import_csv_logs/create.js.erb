@@ -1,0 +1,5 @@
+<% if @import_csv_log.new_record? %>
+  $("#stats_report-form").html(`<%= render partial: "csv_import_form", locals: {import_csv_log: @import_csv_log} %>`);
+<% else %>
+  $("#stats_report-form").html(`<%= render partial: "show_import_logs", locals: {import_csv_log: @import_csv_log} %>`);
+<% end %>

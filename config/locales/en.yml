@@ -34,7 +34,7 @@ en:
     attributes:
       stats_report:
         total_no_patients: "Total no of patients today"
-        district: "Distrcit"
+        district: "District"
         no_of_patients_under_observation: "Total no of patients under observation today"
         no_of_patients_obs_at_home: "Total no of patients under observation at home today"
         no_of_patients_obs_at_hospital: "Total no of patients under observation at hospital today"
@@ -61,6 +61,7 @@ en:
     no_of_patients_admitted: "Total no of patients admitted"
     no_of_recovered_patient: "Total no of patients recovered"
     no_of_death: "Total no of death"
+  date_text_for_csv: "Date"
   latitude: "Latitude"
   longitude: "Longitude"
   total_no_of_patients: "Total no of patients"

@@ -4,11 +4,12 @@
       <h4>Data Center</h4>
     </div>
     <div id="action-buttons-container">
-      <div id="previous-cancelled-updation-button" class="action-buttons float-left">
-        <button id="deleted_records" class="button_css">View Removed Data</button>
-      </div>
+      <button id="create_button" class="button_css" onclick="on()">Add Data</button>
+      <%= link_to 'Add Data by CSV', csv_export_import_csv_logs_path, target: "_blank", class: 'export-csv button_css', data: {confirm: 'Do you want template csv file?'}, onclick: "send_ajax_for_import_form();" %>
       <div class="action-buttons float-right">
-        <button id="create_button" class="button_css" onclick="on()">Add Data</button>
+        <div id="previous-cancelled-updation-button" class="action-buttons float-left">
+          <button id="deleted_records" class="button_css">View Removed Data</button>
+        </div>
       </div>
     </div>
   </div>
@@ -52,6 +53,10 @@
       </div>
       <div class="digg_pagination">
         <%= will_paginate @previous_entries, :container => false %>
+      </div>
+    <% else %>
+      <div class="no-entries">
+        No Entries
       </div>
     <% end %>
   </div>
@@ -111,4 +116,11 @@
      });
    }
   });
+  
+  function send_ajax_for_import_form(){
+    $.ajax({
+      type: 'POST',
+      url: '/import_csv_logs/get_import_form'
+    });
+  }
 </script>

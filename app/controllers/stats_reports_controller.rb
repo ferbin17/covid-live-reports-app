@@ -1,14 +1,15 @@
 class StatsReportsController < ApplicationController
   
-  skip_before_action :verify_authenticity_token, only: [:get_states, :view_records_data, :get_states_for_forms, :get_districts_for_froms, :destroy, :view_removed_data]
+  skip_before_action :verify_authenticity_token, only: [:get_states, :view_records_data,
+        :get_states_for_forms, :get_districts_for_froms, :destroy, :view_removed_data]
   respond_to :html, :js
   
   def index
-    redirect_to :controller => "admin_users", :action => "detailed_report"
+    redirect_to controller: "admin_users", action: "detailed_report"
   end
   
   def show
-    redirect_to :controller => "admin_users", :action => "detailed_report"
+    redirect_to controller: "admin_users", action: "detailed_report"
   end
   
   def new
@@ -29,7 +30,7 @@ class StatsReportsController < ApplicationController
     @district = @stats_report.district
     if @stats_report.save
       flash[:notice] = "Data added"
-      redirect_to :controller => "admin_users", :action => "data_center"
+      redirect_to controller: "admin_users", action: "data_center"
     else
       respond_to :js
     end
@@ -44,7 +45,7 @@ class StatsReportsController < ApplicationController
     if @stats_report.present?
       if @stats_report.update(construct_params)
         flash[:notice] = "Data updated"
-        redirect_to :controller => "admin_users", :action => "data_center"
+        redirect_to controller: "admin_users", action: "data_center"
       else
         @districts = District.all
         respond_to :js
@@ -57,7 +58,7 @@ class StatsReportsController < ApplicationController
     if @stats_report.present?
       flash[:notice] = "Data removed and moved to cancelled updations" if @stats_report.destroy
     end
-    redirect_to :controller => "admin_users", :action => "data_center", page: params[:page_no]
+    redirect_to controller: "admin_users", action: "data_center", page: params[:page_no]
   end
   
   def get_states
@@ -96,6 +97,5 @@ class StatsReportsController < ApplicationController
       constructed_params = params.require(:filter).permit(:country_id, :state_id)
       constructed_params
     end
-
       
 end

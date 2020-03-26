@@ -59,4 +59,8 @@ gem 'hirb'
 
 gem 'will_paginate'
 
-gem 'bootstrap', '~> 4.0.0'
+gem 'bootstrap', '~> 4.3.1'
+
+gem 'fastercsv'
+
+gem 'paperclip'
