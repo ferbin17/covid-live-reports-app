@@ -1,15 +1,17 @@
 <h4>Import Log</h4>
 <% if import_csv_log.present? %>
-<label>Status: </label><%= import_csv_log.status %>
-<table>
+<table id="import-log-table" class="last-update">
+  <tr>
+    <td colspan="3"><label>Status: </label><%= import_csv_log.status %></td>
+  </tr>
   <tr>
     <td>Line no</td>
     <td>Status</td>
     <td>Description</td>
   </tr>
-  <tr>
 <% if import_csv_log.logs.present? %>
   <% import_csv_log.logs.each do |log| %>
+  <tr>
     <td><%= log[:line_no] %></td>
     <td><%= log[:status] %></td>
     <td>
@@ -21,12 +23,15 @@
       <% else %>
         <%= log[:description] %>
       <% end %>
-      <%=  %>
+        </ul>
     </td>
+  </tr>
   <% end %>
 <% end %>
 </table>
 <% else %>
   Nothing to show
 <% end %>
-<%= link_to 'Back', data_center_path, class: 'button_css' %>
+<div class="width-100px button-divs">
+  <%= link_to 'Back', data_center_path, class: 'button_css width-100px' %>
+</div>

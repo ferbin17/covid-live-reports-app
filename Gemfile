@@ -64,3 +64,7 @@ gem 'bootstrap', '~> 4.3.1'
 gem 'fastercsv'
 
 gem 'paperclip'
+
+gem 'wicked_pdf'
+
+gem 'wkhtmltopdf-binary'

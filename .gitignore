@@ -31,3 +31,5 @@ yarn-debug.log*
 .yarn-integrity
 
 /db/schema.rb
+
+/public/system/import_csv_logs/

@@ -7,7 +7,9 @@ Rails.application.routes.draw do
   delete '/', to: 'devise/registrations#destroy', as: :destroy_user_account
 end
   resources :stats_reports
-  resources :reports
+  resources :reports do
+    get :report_pdf, on: :collection
+  end
   resources :import_csv_logs do
     get :csv_export, on: :collection
   end

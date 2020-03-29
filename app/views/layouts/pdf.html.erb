@@ -1,0 +1,14 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset='utf-8'/>
+  </head>
+  <body onload='number_pages'>
+    <div id="header">
+      <%= wicked_pdf_image_tag '/Coronasafe-logo.png', class: "logo-img d-inline-block align-top", alt: "corona-safe" %>
+    </div>
+    <div id="content">
+      <%= yield %>
+    </div>
+  </body>
+</html>

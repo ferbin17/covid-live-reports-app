@@ -30,6 +30,9 @@
         <td> <%= @total.died %> </td>
     </tr>
   </table>
+  <div class="width-100px button-divs">
+    <%= link_to 'Download PDF', report_pdf_reports_path, class: 'button_css', :format => :pdf %>
+  </div>
 <% else %>
   <div class="no-entries">
     No Entries
